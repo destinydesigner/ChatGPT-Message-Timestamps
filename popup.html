@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 16px;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f9fafb;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      background: #4CAF50;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .control-group {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 12px;
+    }
+
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .control-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .debug-switch {
+      width: 44px;
+      height: 24px;
+      background: #e5e7eb;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .debug-switch.enabled {
+      background: #4CAF50;
+    }
+
+    .debug-slider {
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .debug-switch.enabled .debug-slider {
+      transform: translateX(20px);
+    }
+
+    .control-description {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-enabled {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-disabled {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .refresh-notice {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 6px;
+      padding: 8px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #92400e;
+      display: none;
+    }
+
+    /* Links Section */
+    .links-section {
+      margin: 16px 0;
+    }
+
+    .links-header {
+      margin-bottom: 8px;
+    }
+
+    .links-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .link-btn:hover {
+      background: #f9fafb;
+      border-color: #d1d5db;
+      transform: translateY(-1px);
+    }
+
+    .link-icon {
+      font-size: 14px;
+    }
+
+    /* Support Section */
+    .support-section {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 16px 0;
+    }
+
+    .support-header {
+      margin-bottom: 6px;
+    }
+
+    .support-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .support-description {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .donation-buttons {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .donation-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+      min-width: 0;
+      justify-content: center;
+    }
+
+    .donation-btn.github-sponsor {
+      background: #ea4aaa;
+      color: white;
+    }
+
+    .donation-btn.github-sponsor:hover {
+      background: #d6336c;
+    }
+
+    .donation-icon {
+      font-size: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      .links-title, .support-title {
+        color: #f3f4f6;
+      }
+
+      .link-btn {
+        background: rgba(31, 41, 55, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #f3f4f6;
+      }
+
+      .link-btn:hover {
+        background: rgba(31, 41, 55, 1);
+      }
+
+      .support-section {
+        background: rgba(31, 41, 55, 0.5);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .support-description {
+        color: #9ca3af;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="icon">TS</div>
+    <div class="title">ChatGPT Timestamps</div>
+  </div>
+
+  <div class="control-group">
+    <div class="control-header">
+      <div class="control-label">Debug Mode</div>
+      <div class="debug-switch" id="debugSwitch">
+        <div class="debug-slider"></div>
+      </div>
+    </div>
+    <div class="control-description">
+      Enable debug logging in browser console for troubleshooting.
+      <span class="status-indicator" id="debugStatus">Loading...</span>
+    </div>
+    <div class="refresh-notice" id="refreshNotice">
+      Please refresh the ChatGPT page to apply changes.
+    </div>
+  </div>
+
+  <div class="links-section">
+    <div class="links-header">
+      <span class="links-title">Links</span>
+    </div>
+    <div class="links-grid">
+      <a href="https://www.fangguojian.com" target="_blank" class="link-btn personal">
+        <div class="link-icon">🌐</div>
+        <span>Personal Site</span>
+      </a>
+      <a href="https://github.com/destinydesigner/ChatGPT-Message-Timestamps" target="_blank" class="link-btn github">
+        <div class="link-icon">📦</div>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="support-section">
+    <div class="support-header">
+      <span class="support-title">Support Development</span>
+    </div>
+    <div class="support-description">
+      If you find this extension helpful, consider supporting its development!
+    </div>
+    <div class="donation-buttons">
+      <a href="https://github.com/sponsors/destinydesigner" target="_blank" class="donation-btn github-sponsor">
+        <div class="donation-icon">❤️</div>
+        <span>GitHub Sponsor</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    v1.3.0 | Made with ❤️ by destinydesigner
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

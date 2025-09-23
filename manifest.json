@@ -1,14 +1,27 @@
 {
   "manifest_version": 3,
   "name": "ChatGPT Message Timestamps",
-  "version": "1.0.0",
-  "description": "在 ChatGPT 页面显示每条消息的创建时间（支持本地/UTC切换、悬停显示精确时间）。",
+  "version": "1.3.0",
+  "description": "Display creation timestamps for each ChatGPT message with local/UTC time support and hover details.",
+  "author": "destinydesigner",
+  "homepage_url": "https://github.com/destinydesigner/ChatGPT-Message-Timestamps",
   "icons": {
     "16": "icons/16.png",
     "48": "icons/48.png",
     "128": "icons/128.png"
   },
-  "permissions": [],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ChatGPT Timestamps Settings",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ],
   "host_permissions": [
     "https://chatgpt.com/*",
     "https://chat.openai.com/*"
@@ -21,8 +34,7 @@
       ],
       "js": ["content.js"],
       "css": ["styles.css"],
-      "run_at": "document_start",
-      "world": "MAIN"
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [{
