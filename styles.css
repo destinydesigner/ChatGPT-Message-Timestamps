@@ -1,0 +1,5 @@
+.message-timestamp{
+  font-size:11px;color:#666;margin:4px 0;opacity:.85;font-family:monospace;display:inline-block;
+  background:rgba(0,0,0,.05);padding:2px 6px;border-radius:3px;border-left:3px solid #4CAF50
+}
+.message-timestamp:hover{opacity:1;background:rgba(0,0,0,.1)}
