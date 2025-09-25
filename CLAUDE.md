@@ -9,7 +9,7 @@ This project contains a userscript that adds timestamp display functionality to 
 **Current State**: Tampermonkey userscript (pageHook.js)
 **Target State**: Chrome extension with Manifest V3 architecture
 
-## Project Goals (from guide.md)
+## Project Goals
 
 1. **Convert to Chrome Extension**: Transform the userscript into a proper Chrome extension with zero permissions
 2. **Chrome Web Store Distribution**: Package and submit for store approval within 48 hours
@@ -112,6 +112,27 @@ No build tools required - direct file packaging for Chrome Web Store submission.
 - Robust selector adaptation for UI changes
 - Performance optimizations
 - Historical message replay support
+
+## Future Enhancement Ideas
+
+### Multi-language Support
+- Support for additional languages beyond Chinese and English
+- Localized time format preferences (12h/24h based on locale)
+- Right-to-left language support for Arabic/Hebrew
+- Dynamic language detection from ChatGPT interface
+
+### ChatGPT Background Integration
+- Match timestamp styling with ChatGPT's current theme (light/dark)
+- Adaptive color schemes that follow ChatGPT UI updates
+- Integration with ChatGPT's native typography and spacing
+- Seamless visual integration without disrupting user experience
+
+### Enhanced Time Info Styling
+- Customizable timestamp appearance (font size, color, position)
+- Multiple display formats (relative time, absolute time, duration)
+- Hover animations and transition effects
+- Compact mode for mobile/small screens
+- Optional timestamp backgrounds or borders
 
 ## Common Commands
 
